@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Test</title>
+</head>
+<body>
+    <h1>测试页面</h1>
+    <p>如果你能看到这个，说明基本的 HTML 是正常的</p>
+    
+    <script>
+        console.log('JavaScript 正常工作');
+        
+        // 测试 Vue 应用是否加载
+        setTimeout(() => {
+            const app = document.getElementById('app');
+            if (app) {
+                console.log('找到 #app 元素:', app);
+                console.log('内容:', app.innerHTML);
+            } else {
+                console.log('未找到 #app 元素');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
