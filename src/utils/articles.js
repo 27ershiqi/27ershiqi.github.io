@@ -61,7 +61,7 @@ import article4 from "../articles/2025-11-04-vue3-computed.md?raw";
 
 // 文章映射
 const articleModules = {
-  "2024-01-01-hello-world.md": article1,
+  "2025-11-04-hello-world.md": article1,
   "2024-01-15-vue3-learning.md": article2,
   "2024-02-01-markdown-editor.md": article3,
   "2025-11-04-vue3-computed.md": article4,
