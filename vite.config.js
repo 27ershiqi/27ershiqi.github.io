@@ -20,6 +20,10 @@ export default defineConfig({
     outDir: "dist",
     assetsDir: "assets",
     rollupOptions: {
+      input: {
+        main: './index.html',
+        404: './404.html'
+      },
       output: {
         manualChunks: {
           vendor: ["vue", "vue-router"],
