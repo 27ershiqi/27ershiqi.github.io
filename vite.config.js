@@ -3,25 +3,20 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
-  server: {
-    port: 3000,
-    open: true,
-    proxy: {
-      "/api": {
-        target: "https://jsonplaceholder.typicode.com",
-        changeOrigin: true,
-        secure: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
-  },
-  base: "./",
-  build: {
-    outDir: "dist",
-    assetsDir: "assets"
-  },
-
+  
   plugins: [vue()],
+  base: './', // 关键配置：使用相对路径
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+      }
+    }
+  },
   define: {
     // 模拟 Node 环境变量，避免第三方库检测 Node 环境
     "process.env": {},
