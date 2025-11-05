@@ -10,6 +10,7 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     rollupOptions: {
+      external: ['vue'], // 排除 vue 打包
       output: {
         manualChunks: undefined, // 禁用代码分割（避免模块路径混乱）
         chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -20,6 +21,9 @@ export default defineConfig({
         paths: {
           // 显式指定 vue 的相对路径（针对打包后可能的路径偏移）
           'vue': './node_modules/vue/dist/vue.esm-browser.js'
+        },
+        globals: {
+          vue: 'Vue' // 全局变量映射（CDN 暴露的全局变量）
         }
       }
     }
