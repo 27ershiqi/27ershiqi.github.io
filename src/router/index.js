@@ -5,6 +5,12 @@ const routes = [
     path: "/",
     name: "home",
     component: () =>
+      import(/* webpackChunkName: "simple-home" */ "../views/SimpleHome/index.vue"),
+  },
+  {
+    path: "/complex",
+    name: "complex-home",
+    component: () =>
       import(/* webpackChunkName: "home" */ "../views/Home/index.vue"),
   },
   {
