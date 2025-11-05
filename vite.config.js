@@ -18,20 +18,7 @@ export default defineConfig({
   base: "./",
   build: {
     outDir: "dist",
-    assetsDir: "assets",
-    rollupOptions: {
-      output: {
-        // 将所有代码打包到单个文件中，避免模块解析问题
-        manualChunks: () => 'everything.js',
-        entryFileNames: 'assets/[name]-[hash].js',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
-      }
-    },
-    chunkSizeWarningLimit: 1000,
-    target: 'es2015',
-    minify: false, // 暂时禁用压缩以便调试
-    sourcemap: true // 添加 sourcemap 便于调试
+    assetsDir: "assets"
   },
 
   plugins: [vue()],
