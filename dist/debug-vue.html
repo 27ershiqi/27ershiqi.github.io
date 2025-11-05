@@ -81,23 +81,23 @@
     }
 
     // 检查主要资源
-    checkResource('./assets/main-4d2fab31-2f093acd.js', 'JavaScript 文件');
-    checkResource('./assets/main-4d2fab31-4d2fab31.css', 'CSS 文件');
+    checkResource('./assets/main-4d2fab31-4d2fab31-4d2fab31-4d2fab31-42d74cd6.js', 'JavaScript 文件');
+    checkResource('./assets/main-4d2fab31-4d2fab31-4d2fab31-4d2fab31-4d2fab31.css', 'CSS 文件');
 
-    // 检查 Vue 是否加载
+    // 检查应用是否挂载
     setTimeout(() => {
-      if (window.Vue) {
-        document.getElementById('status').innerHTML += '<div class="success">✅ Vue 全局对象存在</div>';
-      } else {
-        document.getElementById('status').innerHTML += '<div class="warning">⚠️ Vue 全局对象不存在</div>';
-      }
-
-      // 检查应用是否挂载
       const app = document.getElementById('app');
       if (app && app.innerHTML.includes('Vue 应用加载中')) {
         document.getElementById('status').innerHTML += '<div class="error">❌ Vue 应用未能挂载</div>';
       } else {
         document.getElementById('status').innerHTML += '<div class="success">✅ Vue 应用已挂载</div>';
+      }
+      
+      // 检查路由是否工作
+      if (window.location.hash) {
+        document.getElementById('status').innerHTML += '<div class="success">✅ 路由哈希: ' + window.location.hash + '</div>';
+      } else {
+        document.getElementById('status').innerHTML += '<div class="warning">⚠️ 无路由哈希，使用默认路由</div>';
       }
     }, 3000);
 
@@ -106,7 +106,7 @@
   </script>
 
   <!-- 加载 Vue 应用 -->
-  <script type="module" crossorigin src="./assets/main-4d2fab31-2f093acd.js"></script>
-  <link rel="stylesheet" href="./assets/main-4d2fab31-4d2fab31.css">
+  <script type="module" crossorigin src="./assets/main-4d2fab31-4d2fab31-4d2fab31-4d2fab31-42d74cd6.js"></script>
+  <link rel="stylesheet" href="./assets/main-4d2fab31-4d2fab31-4d2fab31-4d2fab31-4d2fab31.css">
 </body>
 </html>
