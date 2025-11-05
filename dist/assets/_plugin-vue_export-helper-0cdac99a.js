@@ -1,4 +1,4 @@
-import{ref as p}from"./node_modules/vue/dist/vue.esm-browser.js";const g=`---\r
+import{r as p}from"./index-e2947351.js";const g=`---\r
 title: "Hello World - 我的第一篇文章"\r
 date: "2025-11-04"\r
 tags: ["生活", "随笔"]\r
