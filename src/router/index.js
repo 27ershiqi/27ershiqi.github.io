@@ -1,31 +1,35 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/Home/index.vue')
+    path: "/",
+    name: "home",
+    component: () =>
+      import(/* webpackChunkName: "home" */ "../views/Home/index.vue"),
   },
   {
-    path: '/test',
-    name: 'test',
-    component: () => import(/* webpackChunkName: "test" */ '../views/Test/index.vue')
+    path: "/test",
+    name: "test",
+    component: () =>
+      import(/* webpackChunkName: "test" */ "../views/Test/index.vue"),
   },
   {
-    path: '/write',
-    name: 'write',
-    component: () => import(/* webpackChunkName: "write" */ '../views/Write/index.vue')
+    path: "/write",
+    name: "write",
+    component: () =>
+      import(/* webpackChunkName: "write" */ "../views/Write/index.vue"),
   },
   {
-    path: '/article/:slug',
-    name: 'article',
-    component: () => import(/* webpackChunkName: "article" */ '../views/Article/index.vue')
-  }
-]
+    path: "/article/:slug",
+    name: "article",
+    component: () =>
+      import(/* webpackChunkName: "article" */ "../views/Article/index.vue"),
+  },
+];
 
 const router = createRouter({
-  history: createWebHistory('/'),
-  routes
-})
+  history: createWebHashHistory(),
+  routes,
+});
 
-export default router
+export default router;
