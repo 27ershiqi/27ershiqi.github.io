@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日碎碎念 - Vue版</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: url('https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302') center/cover fixed;
+            min-height: 100vh;
+        }
+        .header {
+            background: rgba(51, 51, 51, 0.9);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        .profile-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: block;
+            border: 3px solid #007bff;
+        }
+        .profile-name {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .profile-title {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .profile-quote {
+            background: rgba(0, 123, 255, 0.1);
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #555;
+        }
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar {
+            margin-bottom: 25px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .article-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(225, 229, 233, 0.6);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #007bff;
+        }
+        .article-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .article-summary {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #999;
+        }
+        .article-tags {
+            display: flex;
+            gap: 8px;
+        }
+        .article-tag {
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 15px 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <h1>{{ title }}</h1>
+        </header>
+
+        <div class="container">
+            <aside class="profile-card">
+                <img :src="profile.avatar" alt="头像" class="avatar">
+                <div class="profile-name">{{ profile.name }}</div>
+                <div class="profile-title">{{ profile.title }}</div>
+                <div class="profile-quote">
+                    {{ profile.quote }}
+                    <div style="text-align: right; margin-top: 8px; font-size: 12px;">
+                        —— {{ profile.quoteAuthor }}
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">{{ articles.length }}</div>
+                        <div class="stat-label">文章</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">{{ tags.length }}</div>
+                        <div class="stat-label">标签</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">{{ profile.views }}</div>
+                        <div class="stat-label">访问</div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="search-bar">
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        placeholder="搜索文章..." 
+                        v-model="searchQuery"
+                        @input="filterArticles"
+                    >
+                </div>
+
+                <h2 style="margin-bottom: 24px; color: #333;">最新文章</h2>
+
+                <div v-if="filteredArticles.length === 0" style="text-align: center; padding: 40px; color: #999;">
+                    {{ searchQuery ? '没有找到匹配的文章' : '暂无文章' }}
+                </div>
+
+                <article 
+                    v-for="article in filteredArticles" 
+                    :key="article.id"
+                    class="article-card" 
+                    @click="openArticle(article)"
+                >
+                    <div class="article-title">{{ article.title }}</div>
+                    <div class="article-summary">{{ article.summary }}</div>
+                    <div class="article-meta">
+                        <div class="article-tags">
+                            <span 
+                                v-for="tag in article.tags" 
+                                :key="tag"
+                                class="article-tag"
+                            >
+                                {{ tag }}
+                            </span>
+                        </div>
+                        <span>{{ article.date }}</span>
+                    </div>
+                </article>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, computed, onMounted } = Vue;
+
+        createApp({
+            setup() {
+                const title = ref('今日碎碎念');
+                const searchQuery = ref('');
+                
+                const profile = ref({
+                    name: '今日碎碎念',
+                    title: '前端开发者 · 技术博主',
+                    quote: '生乎吾前，其闻道也固先乎吾，吾从而师之；生乎吾后，其闻道也亦先乎吾，吾从而师之。',
+                    quoteAuthor: '韩愈《师说》',
+                    avatar: 'https://img.xjh.me/random_img.php?type=avatar&ctype=acg&return=302',
+                    views: 1024
+                });
+
+                const articles = ref([
+                    {
+                        id: 1,
+                        title: 'Hello World - 我的第一篇文章',
+                        summary: '这是我的第一篇博客文章，记录开始写作的心情和想法。今天是2024年的第一天，我决定开始写博客了！写博客有很多好处：记录生活、分享知识、提升写作能力。',
+                        tags: ['生活', '随笔'],
+                        date: '2024-01-01'
+                    },
+                    {
+                        id: 2,
+                        title: 'Vue 3 学习笔记',
+                        summary: '记录学习 Vue 3 Composition API 的心得体会，包括响应式原理和实际应用。最近在深入学习 Vue 3，特别是 Composition API，感觉收获很大。相比 Options API，Composition API 有更好的逻辑复用和 TypeScript 支持。',
+                        tags: ['Vue', '前端', '技术'],
+                        date: '2024-01-15'
+                    },
+                    {
+                        id: 3,
+                        title: '打造自己的 Markdown 编辑器',
+                        summary: '分享如何使用 Vue 3 和 marked.js 构建一个功能完整的 Markdown 编辑器的经验。作为一个喜欢写作的程序员，我一直想要一个完全符合自己需求的 Markdown 编辑器。经过调研，我选择了 Vue 3 + marked.js + highlight.js 的技术栈。',
+                        tags: ['Markdown', '编辑器', '项目'],
+                        date: '2024-02-01'
+                    },
+                    {
+                        id: 4,
+                        title: 'Vue 3 Computed 深入理解',
+                        summary: 'Vue 3 中的 computed 是一个非常重要的响应式 API，它可以根据响应式数据的变化自动计算出新的值。本文将深入探讨 computed 的工作原理、使用场景和最佳实践。',
+                        tags: ['Vue', 'Computed', '响应式'],
+                        date: '2024-11-04'
+                    }
+                ]);
+
+                const tags = computed(() => {
+                    const allTags = new Set();
+                    articles.value.forEach(article => {
+                        article.tags.forEach(tag => allTags.add(tag));
+                    });
+                    return Array.from(allTags);
+                });
+
+                const filteredArticles = computed(() => {
+                    if (!searchQuery.value) {
+                        return articles.value;
+                    }
+                    
+                    const query = searchQuery.value.toLowerCase();
+                    return articles.value.filter(article => 
+                        article.title.toLowerCase().includes(query) ||
+                        article.summary.toLowerCase().includes(query) ||
+                        article.tags.some(tag => tag.toLowerCase().includes(query))
+                    );
+                });
+
+                const openArticle = (article) => {
+                    alert(`点击了文章: ${article.title}\n\n这里将来会跳转到文章详情页面`);
+                };
+
+                const filterArticles = () => {
+                    // 搜索功能由 computed 自动处理
+                };
+
+                onMounted(() => {
+                    console.log('🎉 Vue 3 博客加载成功！');
+                    console.log('📝 文章数量:', articles.value.length);
+                    console.log('🏷️ 标签数量:', tags.value.length);
+                });
+
+                return {
+                    title,
+                    profile,
+                    articles,
+                    tags,
+                    searchQuery,
+                    filteredArticles,
+                    openArticle,
+                    filterArticles
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

@@ -23,17 +23,11 @@ export default defineConfig({
       input: {
         main: './index.html',
         404: './404.html'
-      },
-      output: {
-        manualChunks: {
-          vendor: ["vue", "vue-router"],
-          highlight: ["highlight.js"],
-          markdown: ["marked"],
-        },
-      },
+      }
     },
     chunkSizeWarningLimit: 1000,
-    target: 'es2015'
+    target: 'es2015',
+    minify: false // 暂时禁用压缩以便调试
   },
 
   plugins: [vue()],
