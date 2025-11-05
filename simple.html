@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日碎碎念 - 简单版</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: url('https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302') center/cover fixed;
+            min-height: 100vh;
+        }
+        .header {
+            background: rgba(51, 51, 51, 0.9);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        .profile-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: block;
+            border: 3px solid #007bff;
+        }
+        .profile-name {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .profile-title {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .profile-quote {
+            background: rgba(0, 123, 255, 0.1);
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #555;
+        }
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar {
+            margin-bottom: 25px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .article-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(225, 229, 233, 0.6);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #007bff;
+        }
+        .article-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .article-summary {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #999;
+        }
+        .article-tags {
+            display: flex;
+            gap: 8px;
+        }
+        .article-tag {
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>今日碎碎念</h1>
+    </header>
+
+    <div class="container">
+        <aside class="profile-card">
+            <img src="https://img.xjh.me/random_img.php?type=avatar&ctype=acg&return=302" alt="头像" class="avatar">
+            <div class="profile-name">今日碎碎念</div>
+            <div class="profile-title">前端开发者 · 技术博主</div>
+            <div class="profile-quote">
+                生乎吾前，其闻道也固先乎吾，吾从而师之；生乎吾后，其闻道也亦先乎吾，吾从而师之。
+                <div style="text-align: right; margin-top: 8px; font-size: 12px;">—— 韩愈《师说》</div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="搜索文章..." id="searchInput">
+            </div>
+
+            <h2 style="margin-bottom: 24px; color: #333;">最新文章</h2>
+
+            <div id="articles">
+                <article class="article-card" onclick="openArticle('hello-world')">
+                    <div class="article-title">Hello World - 我的第一篇文章</div>
+                    <div class="article-summary">这是我的第一篇博客文章，记录开始写作的心情和想法。今天是2024年的第一天，我决定开始写博客了！</div>
+                    <div class="article-meta">
+                        <div class="article-tags">
+                            <span class="article-tag">生活</span>
+                            <span class="article-tag">随笔</span>
+                        </div>
+                        <span>2024-01-01</span>
+                    </div>
+                </article>
+
+                <article class="article-card" onclick="openArticle('vue3-learning')">
+                    <div class="article-title">Vue 3 学习笔记</div>
+                    <div class="article-summary">记录学习 Vue 3 Composition API 的心得体会，包括响应式原理和实际应用。最近在深入学习 Vue 3，特别是 Composition API，感觉收获很大。</div>
+                    <div class="article-meta">
+                        <div class="article-tags">
+                            <span class="article-tag">Vue</span>
+                            <span class="article-tag">前端</span>
+                            <span class="article-tag">技术</span>
+                        </div>
+                        <span>2024-01-15</span>
+                    </div>
+                </article>
+
+                <article class="article-card" onclick="openArticle('markdown-editor')">
+                    <div class="article-title">打造自己的 Markdown 编辑器</div>
+                    <div class="article-summary">分享如何使用 Vue 3 和 marked.js 构建一个功能完整的 Markdown 编辑器的经验。作为一个喜欢写作的程序员，我一直想要一个完全符合自己需求的 Markdown 编辑器。</div>
+                    <div class="article-meta">
+                        <div class="article-tags">
+                            <span class="article-tag">Markdown</span>
+                            <span class="article-tag">编辑器</span>
+                            <span class="article-tag">项目</span>
+                        </div>
+                        <span>2024-02-01</span>
+                    </div>
+                </article>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        console.log('🎉 简单版博客加载成功！');
+        
+        function openArticle(slug) {
+            alert(`点击了文章: ${slug}\n\n这里将来会跳转到文章详情页面`);
+        }
+        
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const articles = document.querySelectorAll('.article-card');
+            
+            articles.forEach(article => {
+                const title = article.querySelector('.article-title').textContent.toLowerCase();
+                const summary = article.querySelector('.article-summary').textContent.toLowerCase();
+                
+                if (title.includes(query) || summary.includes(query)) {
+                    article.style.display = 'block';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        });
+        
+        // 显示加载完成信息
+        setTimeout(() => {
+            console.log('✅ 所有功能加载完成');
+            console.log('📝 文章数量:', document.querySelectorAll('.article-card').length);
+        }, 100);
+    </script>
+</body>
+</html>
