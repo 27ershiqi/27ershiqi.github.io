@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
   plugins: [vue()],
-  base: './', // 使用相对路径
+  base: '/', // GitHub Pages 根路径部署
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
