@@ -22,11 +22,19 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './index.html'
+      },
+      external: [],
+      output: {
+        format: 'es',
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     },
     chunkSizeWarningLimit: 1000,
     target: 'es2015',
-    minify: false // 暂时禁用压缩以便调试
+    minify: false, // 暂时禁用压缩以便调试
+    sourcemap: true // 添加 sourcemap 便于调试
   },
 
   plugins: [vue()],
