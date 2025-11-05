@@ -30,7 +30,7 @@
 </head>
 <body>
   <div id="debug-info">
-    <h2>🔍 GitHub Pages 部署调试</h2>
+    <h2>🔍 GitHub Pages 部署调试 - 单文件版本</h2>
     <div id="status">初始化中...</div>
     <div id="module-test"></div>
   </div>
@@ -43,7 +43,7 @@
   </div>
 
   <script>
-    console.log('🔍 GitHub Pages 调试页面开始');
+    console.log('🔍 GitHub Pages 调试页面开始 - 单文件打包版本');
     
     // 全局错误捕获
     window.addEventListener('error', function(e) {
@@ -60,6 +60,7 @@
     // 检查当前环境
     document.getElementById('status').innerHTML = '<div class="info">📍 当前 URL: ' + window.location.href + '</div>';
     document.getElementById('status').innerHTML += '<div class="info">📍 Base URL: ' + window.location.origin + window.location.pathname + '</div>';
+    document.getElementById('status').innerHTML += '<div class="info">📍 打包方式: 单文件打包（避免模块解析问题）</div>';
     
     // 检查资源加载
     function checkResource(url, name) {
@@ -77,24 +78,8 @@
     }
 
     // 检查主要资源
-    checkResource('./assets/main-fca91385.js', 'JavaScript 文件');
-    checkResource('./assets/index-38d70251.css', 'CSS 文件');
-
-    // 测试模块导入
-    document.getElementById('module-test').innerHTML = '<h3>模块导入测试:</h3>';
-    
-    // 尝试动态导入测试
-    try {
-      import('./assets/main-fca91385.js')
-        .then(() => {
-          document.getElementById('module-test').innerHTML += '<div class="success">✅ 动态导入成功</div>';
-        })
-        .catch(error => {
-          document.getElementById('module-test').innerHTML += '<div class="error">❌ 动态导入失败: ' + error.message + '</div>';
-        });
-    } catch (error) {
-      document.getElementById('module-test').innerHTML += '<div class="error">❌ 导入语法错误: ' + error.message + '</div>';
-    }
+    checkResource('./assets/index-d8a803d6.js', 'JavaScript 文件（单文件打包）');
+    checkResource('./assets/index-3b1339d9.css', 'CSS 文件');
 
     // 检查应用是否挂载
     setTimeout(() => {
@@ -116,8 +101,8 @@
     console.log('🔍 调试脚本加载完成');
   </script>
 
-  <!-- 加载 Vue 应用 -->
-  <script type="module" crossorigin src="./assets/main-fca91385.js"></script>
-  <link rel="stylesheet" href="./assets/index-38d70251.css">
+  <!-- 加载 Vue 应用 - 单文件版本 -->
+  <script type="module" crossorigin src="./assets/index-d8a803d6.js"></script>
+  <link rel="stylesheet" href="./assets/index-3b1339d9.css">
 </body>
 </html>

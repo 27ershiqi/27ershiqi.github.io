@@ -20,12 +20,9 @@ export default defineConfig({
     outDir: "dist",
     assetsDir: "assets",
     rollupOptions: {
-      input: {
-        main: './index.html'
-      },
-      external: [],
       output: {
-        format: 'es',
+        // 将所有代码打包到单个文件中，避免模块解析问题
+        manualChunks: () => 'everything.js',
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
