@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
   plugins: [vue()],
-  base: '/', // GitHub Pages 根路径部署
+  base: process.env.NODE_ENV === 'production' ? './' : '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -11,7 +11,8 @@ export default defineConfig({
       output: {
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+        format: 'es'
       }
     }
   },
