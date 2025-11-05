@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        h1 { text-align: center; margin-bottom: 30px; }
+        .test-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background: rgba(0, 255, 0, 0.3); }
+        .error { background: rgba(255, 0, 0, 0.3); }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 恭喜！页面可以正常显示了！</h1>
+        
+        <div class="test-item success">
+            ✅ HTML 加载成功
+        </div>
+        
+        <div class="test-item success">
+            ✅ CSS 样式正常
+        </div>
+        
+        <div class="test-item" id="js-test">
+            ⏳ JavaScript 测试中...
+        </div>
+        
+        <div class="test-item">
+            <h3>📝 博客功能预览</h3>
+            <p>这里将显示你的个人博客，包括：</p>
+            <ul>
+                <li>个人简介卡片</li>
+                <li>文章列表</li>
+                <li>Markdown 编辑器</li>
+                <li>搜索和标签功能</li>
+            </ul>
+        </div>
+        
+        <div class="test-item">
+            <h3>🔗 快速链接</h3>
+            <button onclick="window.location.href='/#/'">返回主页</button>
+            <button onclick="window.location.href='/#/test'">Vue测试页</button>
+            <button onclick="testVue()">测试Vue应用</button>
+        </div>
+        
+        <div class="test-item">
+            <h3>📊 系统信息</h3>
+            <p>当前时间: <span id="time"></span></p>
+            <p>用户代理: <span id="ua"></span></p>
+            <p>页面URL: <span id="url"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // 测试JavaScript
+        document.getElementById('js-test').innerHTML = '✅ JavaScript 运行正常';
+        document.getElementById('js-test').className = 'test-item success';
+        
+        // 显示系统信息
+        document.getElementById('time').textContent = new Date().toLocaleString();
+        document.getElementById('ua').textContent = navigator.userAgent.substring(0, 50) + '...';
+        document.getElementById('url').textContent = window.location.href;
+        
+        // 测试Vue应用
+        function testVue() {
+            const app = document.getElementById('app');
+            if (app) {
+                alert('找到了Vue应用容器！');
+                console.log('Vue app container:', app);
+            } else {
+                alert('没有找到Vue应用容器');
+            }
+        }
+        
+        console.log('测试页面加载完成！');
+    </script>
+</body>
+</html>
