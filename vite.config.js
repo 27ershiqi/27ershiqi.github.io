@@ -10,6 +10,7 @@ export default defineConfig({
     assetsDir: "assets",
     rollupOptions: {
       output: {
+        manualChunks: undefined, // 禁用代码分割
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash].[ext]",
