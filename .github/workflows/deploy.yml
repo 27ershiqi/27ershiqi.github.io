@@ -1,0 +1,50 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - 'index.html'
+      - 'assets/**'
+      - 'simple.html'
+      - 'test.html'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build
+      run: npm run build
+      
+    - name: Deploy to main branch
+      run: |
+        # 配置 git
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # 清理旧的构建文件
+        rm -f index.html
+        rm -rf assets
+        
+        # 复制新的构建文件
+        cp -r dist/* .
+        
+        # 提交更改
+        git add index.html assets
+        git diff --staged --quiet || git commit -m "Auto deploy: $(date)"
+        git push
