@@ -12,7 +12,7 @@ export default defineConfig({
     assetsDir: "assets",
     rollupOptions: {
       output: {
-        sanitizeFileNames: false, // 禁用文件名清理
+        sanitizeFileName: false, // 禁用文件名清理
         manualChunks: undefined, // 禁用代码分割
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
