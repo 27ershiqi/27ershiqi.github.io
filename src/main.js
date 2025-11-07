@@ -10,4 +10,4 @@ const app = createApp(App);
 app.use(router);
 app.mount("#app");
 
-console.log("应用初始化完成 - 修复后的自动部署-");
+console.log("应用初始化完成 - 修复后的自动部署-----");
