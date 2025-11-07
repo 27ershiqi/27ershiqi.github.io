@@ -16,17 +16,50 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-repeat: no-repeat; 
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center center;
-  background-image: url(https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302);
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 视频背景容器 */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+/* 视频背景遮罩层，让内容更清晰 */
+.video-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
 }
 
 #app {
   min-height: 100vh;
   position: relative;
+  z-index: 1;
 }
 
 /* 为了让内容在背景上更清晰可见，添加一些样式 */

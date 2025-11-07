@@ -6,7 +6,7 @@
           <li><router-link to="/">首页</router-link></li>
           <!-- <li><router-link to="/write">写作</router-link></li> -->
           <li>技术</li>
-          <li>动漫</li>
+          <li><router-link to="/anime">动漫</router-link></li>
           <li>日记</li>
         </ul>
       </div>

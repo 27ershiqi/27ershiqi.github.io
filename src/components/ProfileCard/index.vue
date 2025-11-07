@@ -4,16 +4,12 @@
     <div class="profile-bg">
       <img src="https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302" alt="背景" />
     </div>
-    
+
     <!-- 头像 -->
     <div class="avatar-container">
-      <img 
-        src="https://img.xjh.me/random_img.php?type=avatar&ctype=acg&return=302" 
-        alt="头像" 
-        class="avatar"
-      />
+      <img src="https://img.xjh.me/random_img.php?type=avatar&ctype=acg&return=302" alt="头像" class="avatar" />
     </div>
-    
+
     <!-- 个人信息 -->
     <div class="profile-content">
       <h2 class="profile-name">{{ profileData.name }}</h2>
@@ -22,7 +18,7 @@
         <p>{{ profileData.quote }}</p>
         <span class="quote-author">—— {{ profileData.quoteAuthor }}</span>
       </div>
-      
+
       <!-- 统计信息 -->
       <div class="profile-stats">
         <div class="stat-item">
@@ -38,17 +34,23 @@
           <span class="stat-label">访问</span>
         </div>
       </div>
-      
+
+      <!-- 导航菜单 -->
+      <div class="nav-menu">
+        <router-link to="/" class="nav-item">
+          <span class="nav-icon">🏠</span>
+          <span>首页</span>
+        </router-link>
+        <router-link to="/anime" class="nav-item">
+          <span class="nav-icon">🎨</span>
+          <span>动漫</span>
+        </router-link>
+      </div>
+
       <!-- 社交链接 -->
       <div class="social-links">
-        <a 
-          v-for="link in profileData.socialLinks" 
-          :key="link.name"
-          :href="link.url" 
-          target="_blank"
-          class="social-link"
-          :title="link.name"
-        >
+        <a v-for="link in profileData.socialLinks" :key="link.name" :href="link.url" target="_blank" class="social-link"
+          :title="link.name">
           {{ link.icon }}
         </a>
       </div>
@@ -57,7 +59,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 
 // 个人资料数据
 const profileData = ref({
@@ -197,6 +199,40 @@ const viewCount = ref(1024)
   margin-top: 4px;
 }
 
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #666;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.nav-item:hover {
+  background: rgba(0, 123, 255, 0.1);
+  color: #007bff;
+  transform: translateX(4px);
+}
+
+.nav-item.router-link-active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.nav-icon {
+  font-size: 18px;
+}
+
 .social-links {
   display: flex;
   justify-content: center;
@@ -228,20 +264,20 @@ const viewCount = ref(1024)
     position: static;
     margin-bottom: 20px;
   }
-  
+
   .profile-content {
     padding: 0 16px 16px;
   }
-  
+
   .profile-quote {
     margin: 16px 0;
     padding: 12px;
   }
-  
+
   .social-links {
     gap: 12px;
   }
-  
+
   .social-link {
     width: 32px;
     height: 32px;

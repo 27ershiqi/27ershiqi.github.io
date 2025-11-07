@@ -15,6 +15,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "article" */ "../views/Article/index.vue"),
   },
+  {
+    path: "/anime",
+    name: "anime",
+    component: () =>
+      import(/* webpackChunkName: "anime" */ "../views/Anime/index.vue"),
+  },
 ];
 
 const router = createRouter({
