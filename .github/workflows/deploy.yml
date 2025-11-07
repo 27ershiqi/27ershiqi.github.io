@@ -3,11 +3,11 @@ name: Build and Deploy
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - "index.html"
-      - "assets/**"
-      - "simple.html"
-      - "test.html"
+    paths:
+      - "src/**"
+      - "public/**"
+      - "package.json"
+      - "vite.config.js"
 
 permissions:
   contents: write
@@ -20,7 +20,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -35,8 +34,21 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+      - name: Deploy to main branch
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          rm -f index.html
+          rm -rf assets
+          
+          cp -r dist/* .
+          
+          git add index.html assets
+          
+          if git diff --staged --quiet; then
+            echo "No changes to deploy"
+          else
+            git commit -m "chore: auto deploy [skip ci]"
+            git push
+          fi
