@@ -1,10 +1,8 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { fileURLToPath, URL } from "node:url";
-import { setupBuild } from './build/index';
+import { resolve } from "path";
 
 export default defineConfig({
-  build: setupBuild(),
   plugins: [vue()],
   base: process.env.NODE_ENV === "production" ? "./" : "/",
   build: {
@@ -12,8 +10,7 @@ export default defineConfig({
     assetsDir: "assets",
     rollupOptions: {
       output: {
-        sanitizeFileName: false, // 禁用文件名清理
-        manualChunks: undefined, // 禁用代码分割
+        manualChunks: undefined,
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash].[ext]",
@@ -23,7 +20,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    }
+      "@": resolve(__dirname, "src"),
+    },
   },
 });
