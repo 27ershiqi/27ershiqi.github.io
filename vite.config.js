@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
   plugins: [vue()],
-  base: "/dist/",
+  base: "./",
   build: {
     outDir: "dist",
     assetsDir: "assets",
