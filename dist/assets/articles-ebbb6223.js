@@ -1,4 +1,4 @@
-import{r as p}from"./index-7aa5c028.js";const g=`---\r
+import{r as p}from"./index-aa350050.js";const S=`---\r
 title: "Hello World - 我的第一篇文章"\r
 date: "2025-11-04"\r
 tags: ["生活", "随笔"]\r
@@ -41,7 +41,7 @@ function sayHello() {\r
 sayHello();\r
 \`\`\`\r
 \r
-期待与大家的交流！ 🎉`,v=`---\r
+期待与大家的交流！ 🎉`,g=`---\r
 title: "Vue 3 学习笔记"\r
 date: "2024-01-15"\r
 tags: ["Vue", "前端", "技术"]\r
@@ -234,7 +234,7 @@ const debouncedUpdate = debounce(() => {\r
 \r
 **开源地址**: [GitHub](https://github.com/example/markdown-editor)\r
 \r
-欢迎大家试用和贡献代码！ 📝`,h=`---\r
+欢迎大家试用和贡献代码！ 📝`,v=`---\r
 title: "Vue 3 Computed 计算属性"\r
 date: "2025-11-04"\r
 tags: ["Vue", "前端", "技术"]\r
@@ -310,5 +310,43 @@ console.log(doubleCount.value) // 4\r
 ### 总结\r
 \r
 今天我们学习了 Vue 3 中的 computed 属性，它可以帮助我们定义一些计算属性，这些属性会根据依赖的数据自动更新。computed 属性的性能比普通的函数要好，因为它会自动缓存其结果。希望这篇文章对你有所帮助！\r
-`,l=p([]);function w(r){const t=/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/,n=r.match(t);if(!n)return{frontmatter:{},content:r};const e=n[1],a=n[2],c={};return e.split(`
-`).forEach(u=>{const s=u.indexOf(":");if(s>0){const m=u.substring(0,s).trim();let o=u.substring(s+1).trim();(o.startsWith('"')&&o.endsWith('"')||o.startsWith("'")&&o.endsWith("'"))&&(o=o.slice(1,-1)),o.startsWith("[")&&o.endsWith("]")&&(o=o.slice(1,-1).split(",").map(d=>d.trim().replace(/['"]/g,""))),c[m]=o}}),{frontmatter:c,content:a}}const C={"2025-11-04-hello-world.md":g,"2024-01-15-vue3-learning.md":v,"2024-02-01-markdown-editor.md":f,"2025-11-04-vue3-computed.md":h};async function i(){if(l.value.length>0)return l.value;const r=[];for(const[t,n]of Object.entries(C))try{const{frontmatter:e,content:a}=w(n),c=t.replace(".md","");r.push({slug:c,filename:t,title:e.title||"无标题",date:e.date||"未知日期",tags:e.tags||[],summary:e.summary||k(a),content:a,frontmatter:e})}catch(e){console.warn(`无法加载文章: ${t}`,e)}return r.sort((t,n)=>new Date(n.date)-new Date(t.date)),l.value=r,r}async function V(r){return(await i()).find(n=>n.slug===r)}function k(r,t=150){const n=r.replace(/#{1,6}\s+/g,"").replace(/\*\*(.*?)\*\*/g,"$1").replace(/\*(.*?)\*/g,"$1").replace(/`(.*?)`/g,"$1").replace(/\[([^\]]+)\]\([^)]+\)/g,"$1").replace(/```[\s\S]*?```/g,"").replace(/>\s+/g,"").replace(/[-*+]\s+/g,"").replace(/\n+/g," ").trim();return n.length>t?n.substring(0,t)+"...":n}async function y(){const r=await i(),t=new Set;return r.forEach(n=>{n.tags.forEach(e=>t.add(e))}),Array.from(t).sort()}const x=(r,t)=>{const n=r.__vccOpts||r;for(const[e,a]of t)n[e]=a;return n};export{x as _,y as a,V as b,i as g};
+`,C=`---\r
+title: "JS CSS 阻塞机制"\r
+date: "2025-11-10"\r
+tags: ["js", "前端", "技术"]\r
+summary: "为什么页面会出现白屏？这篇文章讲解一下 js 和 css 阻塞机制。"\r
+---\r
+\r
+## JS CSS 阻塞机制\r
+\r
+### 我们都知道，现代浏览器会并行下载各种资源（如 JS、CSS、图片等），但 JS 和 CSS 的加载与阻塞行为到底是什么？\r
+\r
+## 先说结论:\r
+\r
+1. CSS 不会阻塞 DOM 解析，但会阻塞 DOM 渲染。\r
+2. JS 会阻塞 DOM 解析，但不会阻塞 DOM 渲染。\r
+3. JS 会阻塞 CSS 解析，但不会阻塞 CSS 加载。\r
+4. CSS 加载不会阻塞 JS 执行，但会阻塞 JS 解析。\r
+\r
+## 解释上述结论:\r
+\r
+1. CSS 不会阻塞 DOM 解析，但会阻塞 DOM 渲染。因为浏览器需要先解析完 CSS，才能知道如何渲染页面。\r
+2. JS 会阻塞 DOM 解析，但不会阻塞 DOM 渲染。因为浏览器会先解析 HTML，然后再解析 JS。\r
+3. JS 会阻塞 CSS 解析，但不会阻塞 CSS 加载。因为浏览器会先加载 CSS，然后再解析 JS。\r
+4. CSS 加载不会阻塞 JS 执行，但会阻塞 JS 解析。因为浏览器会先加载 CSS，然后再解析 JS。\r
+\r
+## 为什么页面会出现白屏？\r
+\r
+1. CSS 加载阻塞了 DOM 渲染。\r
+2. JS 加载阻塞了 DOM 解析。\r
+3. CSS 加载阻塞了 JS 解析。\r
+\r
+## 如何避免白屏？\r
+1. 将 CSS 放在 head 标签中，尽早加载。\r
+2. 将 JS 放在 body 标签底部，避免阻塞 DOM 解析。\r
+3. 使用 async 或 defer 属性加载 JS，避免阻塞 CSS 解析。\r
+4. 使用 CDN 加速 CSS 和 JS 的加载。\r
+\r
+## 总结\r
+这篇文章讲解了 JS 和 CSS 的阻塞机制，以及如何避免白屏。希望对大家有所帮助。`,l=p([]);function h(e){const r=/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/,n=e.match(r);if(!n)return{frontmatter:{},content:e};const t=n[1],a=n[2],c={};return t.split(`
+`).forEach(u=>{const s=u.indexOf(":");if(s>0){const m=u.substring(0,s).trim();let o=u.substring(s+1).trim();(o.startsWith('"')&&o.endsWith('"')||o.startsWith("'")&&o.endsWith("'"))&&(o=o.slice(1,-1)),o.startsWith("[")&&o.endsWith("]")&&(o=o.slice(1,-1).split(",").map(d=>d.trim().replace(/['"]/g,""))),c[m]=o}}),{frontmatter:c,content:a}}const w={"2025-11-04-hello-world.md":S,"2024-01-15-vue3-learning.md":g,"2024-02-01-markdown-editor.md":f,"2025-11-04-vue3-computed.md":v,"2025-11-10-js-css阻塞机制.md":C};async function i(){if(l.value.length>0)return l.value;const e=[];for(const[r,n]of Object.entries(w))try{const{frontmatter:t,content:a}=h(n),c=r.replace(".md","");e.push({slug:c,filename:r,title:t.title||"无标题",date:t.date||"未知日期",tags:t.tags||[],summary:t.summary||b(a),content:a,frontmatter:t})}catch(t){console.warn(`无法加载文章: ${r}`,t)}return e.sort((r,n)=>new Date(n.date)-new Date(r.date)),l.value=e,e}async function M(e){return(await i()).find(n=>n.slug===e)}function b(e,r=150){const n=e.replace(/#{1,6}\s+/g,"").replace(/\*\*(.*?)\*\*/g,"$1").replace(/\*(.*?)\*/g,"$1").replace(/`(.*?)`/g,"$1").replace(/\[([^\]]+)\]\([^)]+\)/g,"$1").replace(/```[\s\S]*?```/g,"").replace(/>\s+/g,"").replace(/[-*+]\s+/g,"").replace(/\n+/g," ").trim();return n.length>r?n.substring(0,r)+"...":n}async function y(){const e=await i(),r=new Set;return e.forEach(n=>{n.tags.forEach(t=>r.add(t))}),Array.from(r).sort()}export{y as a,M as b,i as g};
