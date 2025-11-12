@@ -58,6 +58,7 @@ import article1 from "../articles/2025-11-04-hello-world.md?raw";
 import article2 from "../articles/2024-01-15-vue3-learning.md?raw";
 import article3 from "../articles/2024-02-01-markdown-editor.md?raw";
 import article4 from "../articles/2025-11-04-vue3-computed.md?raw";
+import article5 from "../articles/2025-11-10-js-css阻塞机制.md?raw";
 
 // 文章映射
 const articleModules = {
@@ -65,6 +66,7 @@ const articleModules = {
   "2024-01-15-vue3-learning.md": article2,
   "2024-02-01-markdown-editor.md": article3,
   "2025-11-04-vue3-computed.md": article4,
+  "2025-11-10-js-css阻塞机制.md": article5,
 };
 
 // 获取所有文章

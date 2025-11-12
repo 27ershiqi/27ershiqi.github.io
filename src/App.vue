@@ -8,8 +8,11 @@
       loop 
       muted 
       playsinline
+      preload="auto"
+      @loadeddata="onVideoLoaded"
     >
       <source :src="currentVideoUrl" type="video/mp4">
+      您的浏览器不支持视频播放
     </video>
   </div>
 
@@ -20,7 +23,7 @@
 
   <!-- 小风车切换按钮 -->
   <div 
-    class="windmill-btn" 
+    class="windmill-btn"
     :class="{ spinning: isSpinning }"
     @click="changeVideo"
     title="切换背景视频"
@@ -44,6 +47,8 @@ import { ref } from 'vue'
 import Headers from './components/Header/index.vue'
 
 const arr = [
+  "https://oss.nbtab.com/public/2025/08/25/2144716031387738-0.mp4",
+  "https://oss.nbtab.com/public/2025/08/25/2134314294796319-0.mp4",
   "https://oss.nbtab.com/public/2025/09/17/0657933952527777-d09685febaa173ccdc51298f3aa082ef.mp4",
   "https://oss.nbtab.com/public/2025/09/28/4979111923692981-1101220.mp4",
   "https://oss.nbtab.com/public/2025/09/03/8971381153177124-7_15488489007572.mp4",
@@ -65,6 +70,15 @@ const arr = [
 const currentVideoUrl = ref(arr[0])
 const videoRef = ref(null)
 const isSpinning = ref(false)
+
+// 视频加载完成
+const onVideoLoaded = () => {
+  if (videoRef.value) {
+    videoRef.value.play().catch(err => {
+      console.log('视频自动播放失败:', err)
+    })
+  }
+}
 
 // 随机切换视频
 const changeVideo = () => {
