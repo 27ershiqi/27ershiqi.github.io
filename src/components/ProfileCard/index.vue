@@ -43,7 +43,7 @@
         </router-link>
         <router-link to="/anime" class="nav-item">
           <span class="nav-icon">🎨</span>
-          <span>动漫</span>
+          <span>壁纸</span>
         </router-link>
       </div>
 

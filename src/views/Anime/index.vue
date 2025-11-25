@@ -1,7 +1,7 @@
 <template>
   <div class="anime-gallery">
-    <div class="header">
-      <h1>动漫图片</h1>
+    <!-- <div class="header">
+      <h1>动漫壁纸</h1>
       <div class="categories">
         <button
           v-for="cat in categories"
@@ -12,9 +12,32 @@
           {{ cat.name }}
         </button>
       </div>
+    </div> -->
+
+    <!-- 动态视频背景 -->
+    <div class="video-bg-container">
+      <div class="video-title">
+        <span>动态背景</span>
+      </div>
+      <div class="video-bg">
+        <video
+          v-for="src in arrImages"
+          :ref="`video-${src.id}`"
+          :key="src.id" 
+          :poster="src.thumbnail"
+          autoplay 
+          loop 
+          muted
+          playsinline
+          preload="auto"
+        >
+          <source :src="src.url" type="video/mp4">
+          您的浏览器不支持视频播放
+        </video>
+      </div>
     </div>
 
-    <div class="gallery-grid">
+    <!-- <div class="gallery-grid">
       <div
         v-for="image in filteredImages"
         :key="image.id"
@@ -27,10 +50,10 @@
           <span class="category-tag">{{ getCategoryName(image.category) }}</span>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- 图片预览弹窗 -->
-    <div v-if="previewImage" class="preview-modal" @click="closePreview">
+    <!-- <div v-if="previewImage" class="preview-modal" @click="closePreview">
       <div class="preview-content" @click.stop>
         <button class="close-btn" @click="closePreview">×</button>
         <img :src="previewImage.url" :alt="previewImage.title" />
@@ -42,7 +65,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -64,53 +87,64 @@ const previewImage = ref(null);
 const images = ref([
   {
     id: 1,
-    title: "樱花少女",
+    title: "少女",
     category: "cute",
-    thumbnail: "https://picsum.photos/400/300?random=1",
-    url: "https://picsum.photos/1200/900?random=1",
-    description: "春日樱花树下的少女",
+    thumbnail: "https://oss.nbtab.com/public/xxoo/51257ad8-1cca-4541-aa0e-e67d9b28950b.mp4?vframe/jpg/offset/2/w/400/h/240",
+    url: "https://oss.nbtab.com/public/xxoo/51257ad8-1cca-4541-aa0e-e67d9b28950b.mp4",
+    description: "春日少女",
+  }
+]);
+
+// 动态壁纸
+const arrImages = [
+  {
+    id: 1,
+    title: "少女",
+    category: "cute",
+    thumbnail: "https://oss.nbtab.com/public/xxoo/51257ad8-1cca-4541-aa0e-e67d9b28950b.mp4?vframe/jpg/offset/2/w/400/h/240",
+    url: "https://oss.nbtab.com/public/xxoo/51257ad8-1cca-4541-aa0e-e67d9b28950b.mp4",
+    description: "春日少女",
   },
   {
     id: 2,
-    title: "星空战士",
-    category: "cool",
-    thumbnail: "https://picsum.photos/400/300?random=2",
-    url: "https://picsum.photos/1200/900?random=2",
-    description: "星空下的战士",
+    title: "炫酷",
+    category: "cute",
+    thumbnail: "https://oss.nbtab.com/public/xxoo/f3d7e97f-27a7-447c-9464-19280c475822.mp4?vframe/jpg/offset/2/w/400/h/240",
+    url: "https://oss.nbtab.com/public/xxoo/f3d7e97f-27a7-447c-9464-19280c475822.mp4",
+    description: "炫酷少女",
   },
   {
     id: 3,
-    title: "魔法森林",
-    category: "fantasy",
-    thumbnail: "https://picsum.photos/400/300?random=3",
-    url: "https://picsum.photos/1200/900?random=3",
-    description: "神秘的魔法森林",
+    title: "蜘蛛侠",
+    category: "cute",
+    thumbnail: "https://oss.nbtab.com/public/2025/08/25/2144716031387738-0.mp4?vframe/jpg/offset/2/w/400/h/240",
+    url: "https://oss.nbtab.com/public/2025/08/25/2144716031387738-0.mp4",
+    description: "吐丝的蜘蛛侠",
   },
   {
     id: 4,
-    title: "夕阳海岸",
-    category: "scenery",
-    thumbnail: "https://picsum.photos/400/300?random=4",
-    url: "https://picsum.photos/1200/900?random=4",
-    description: "美丽的夕阳海岸线",
-  },
-  {
-    id: 5,
-    title: "猫耳少女",
+    title: "猫咪",
     category: "cute",
-    thumbnail: "https://picsum.photos/400/300?random=5",
-    url: "https://picsum.photos/1200/900?random=5",
-    description: "可爱的猫耳少女",
-  },
-  {
-    id: 6,
-    title: "机甲战士",
-    category: "cool",
-    thumbnail: "https://picsum.photos/400/300?random=6",
-    url: "https://picsum.photos/1200/900?random=6",
-    description: "未来科技机甲",
-  },
-]);
+    thumbnail: "https://oss.nbtab.com/public/2025/09/17/0657933952527777-d09685febaa173ccdc51298f3aa082ef.mp4?vframe/jpg/offset/2/w/400/h/240",
+    url: "https://oss.nbtab.com/public/2025/09/17/0657933952527777-d09685febaa173ccdc51298f3aa082ef.mp4",
+    description: "眨着卡兰兹大眼睛的小猫咪",
+  }
+  // "https://oss.nbtab.com/public/2025/09/28/4979111923692981-1101220.mp4",
+  // "https://oss.nbtab.com/public/2025/09/03/8971381153177124-7_15488489007572.mp4",
+  // "https://oss.nbtab.com/public/2025/11/07/9681929465184793-2.mp4",
+  // "https://oss.nbtab.com/public/2025/10/10/8171988581727436-0.mp4",
+  // "https://oss.nbtab.com/public/2025/09/28/4972974999836863-6iuffgg.mp4",
+  // "https://oss.nbtab.com/public/2025/08/04/0059764948833621-4.mp4",
+  // "https://oss.nbtab.com/public/2025/10/27/5550790177959572-1_.mp4",
+  // "https://oss.nbtab.com/public/2025/10/10/8173880111828283-0.mp4",
+  // "https://oss.nbtab.com/public/2025/08/04/0058722581348819-1.mp4",
+  // "https://oss.nbtab.com/public/2025/09/28/4987266093324259-TouhouCybustFlandreScarletPC.mp4",
+  // "https://oss.nbtab.com/public/2025/09/19/5342123286893291-2299a99ee2b2b32cb1b19bd6513441c8_preview.mp4",
+  // "https://oss.nbtab.com/public/2025/08/04/0061217626172376-7.mp4",
+  // "https://oss.nbtab.com/public/2025/10/09/0247922245468121-CityLife.mp4",
+  // "https://oss.nbtab.com/public/2025/09/03/8968662061167372-7_15488489007230.mp4",
+  // "https://oss.nbtab.com/public/2025/09/25/6299496961766459-c62d052c989c45545b80cfc3af9d88e6_preview.mp4"
+]
 
 const filteredImages = computed(() => {
   if (currentCategory.value === "all") {
@@ -152,7 +186,7 @@ const downloadImage = async (image) => {
 
 <style scoped>
 .anime-gallery {
-  max-width: 1200px;
+  max-width: 1920;
   margin: 0 auto;
   padding: 20px;
 }
@@ -167,7 +201,36 @@ const downloadImage = async (image) => {
   color: #fff;
 }
 
+.video-bg-container {
+  max-width: 1920;
+  margin: 0 auto;
+}
+
+.video-bg-container .video-title {
+  color: #fff;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.video-bg-container .video-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.video-bg-container .video-bg video {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
 .categories {
+  margin-left: 15px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
