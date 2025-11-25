@@ -6,7 +6,7 @@
       :key="currentVideoUrl" 
       autoplay 
       loop 
-      muted 
+      muted
       playsinline
       preload="auto"
       @loadeddata="onVideoLoaded"
@@ -47,6 +47,7 @@ import { ref } from 'vue'
 import Headers from './components/Header/index.vue'
 
 const arr = [
+  "https://oss.nbtab.com/public/xxoo/f3d7e97f-27a7-447c-9464-19280c475822.mp4",
   "https://oss.nbtab.com/public/2025/08/25/2144716031387738-0.mp4",
   "https://oss.nbtab.com/public/2025/08/25/2134314294796319-0.mp4",
   "https://oss.nbtab.com/public/2025/09/17/0657933952527777-d09685febaa173ccdc51298f3aa082ef.mp4",

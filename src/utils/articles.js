@@ -59,6 +59,8 @@ import article2 from "../articles/2024-01-15-vue3-learning.md?raw";
 import article3 from "../articles/2024-02-01-markdown-editor.md?raw";
 import article4 from "../articles/2025-11-04-vue3-computed.md?raw";
 import article5 from "../articles/2025-11-10-js-css阻塞机制.md?raw";
+import article6 from "../articles/2025-11-13-vue图片懒加载及原理.md?raw";
+import article7 from "../articles/2025-11-25-跨页面通讯.md?raw";
 
 // 文章映射
 const articleModules = {
@@ -67,6 +69,8 @@ const articleModules = {
   "2024-02-01-markdown-editor.md": article3,
   "2025-11-04-vue3-computed.md": article4,
   "2025-11-10-js-css阻塞机制.md": article5,
+  "2025-11-13-vue图片懒加载及原理.md": article6,
+  "2025-11-25-跨页面通信.md": article7,
 };
 
 // 获取所有文章
