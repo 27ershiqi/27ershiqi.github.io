@@ -1,4 +1,4 @@
-import{c as p}from"./index-0212eadc.js";const g=`---
+import{r as p}from"./index-c90dbd34.js";const g=`---
 title: "Hello World - 我的第一篇文章"
 date: "2025-11-04"
 tags: ["生活", "随笔"]
@@ -234,7 +234,7 @@ const debouncedUpdate = debounce(() => {
 
 **开源地址**: [GitHub](https://github.com/example/markdown-editor)
 
-欢迎大家试用和贡献代码！ 📝`,h=`---
+欢迎大家试用和贡献代码！ 📝`,f=`---
 title: "Vue 3 Computed 计算属性"
 date: "2025-11-04"
 tags: ["Vue", "前端", "技术"]
@@ -310,7 +310,7 @@ console.log(doubleCount.value) // 4
 ### 总结
 
 今天我们学习了 Vue 3 中的 computed 属性，它可以帮助我们定义一些计算属性，这些属性会根据依赖的数据自动更新。computed 属性的性能比普通的函数要好，因为它会自动缓存其结果。希望这篇文章对你有所帮助！
-`,f=`---
+`,h=`---
 title: "JS CSS 阻塞机制"
 date: "2025-11-10"
 tags: ["js", "前端", "技术"]
@@ -777,5 +777,5 @@ ws.onmessage = (e) => {
 
 ### 总结
 
-跨页面通信是前端开发中常见的需求，根据不同场景和需求，选择合适的通信方式。同域下，推荐使用 \`localStorage\`、\`sessionStorage\`、\`BroadcastChannel\`，跨域下，推荐使用 \`postMessage\`、\`WebSocket\`。`,l=p([]);function k(t){const e=/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/,o=t.match(e);if(!o)return{frontmatter:{},content:t};const r=o[1],s=o[2],n={};return r.split(`
-`).forEach(c=>{const i=c.indexOf(":");if(i>0){const u=c.substring(0,i).trim();let a=c.substring(i+1).trim();(a.startsWith('"')&&a.endsWith('"')||a.startsWith("'")&&a.endsWith("'"))&&(a=a.slice(1,-1)),a.startsWith("[")&&a.endsWith("]")&&(a=a.slice(1,-1).split(",").map(d=>d.trim().replace(/['"]/g,""))),n[u]=a}}),{frontmatter:n,content:s}}const w={"2025-11-04-hello-world.md":g,"2024-01-15-vue3-learning.md":S,"2024-02-01-markdown-editor.md":v,"2025-11-04-vue3-computed.md":h,"2025-11-10-js-css阻塞机制.md":f,"2025-11-13-vue图片懒加载及原理.md":b,"2025-11-25-跨页面通信.md":C};async function m(){if(l.value.length>0)return l.value;const t=[];for(const[e,o]of Object.entries(w))try{const{frontmatter:r,content:s}=k(o),n=e.replace(".md","");t.push({slug:n,filename:e,title:r.title||"无标题",date:r.date||"未知日期",tags:r.tags||[],summary:r.summary||y(s),content:s,frontmatter:r})}catch(r){console.warn(`无法加载文章: ${e}`,r)}return t.sort((e,o)=>new Date(o.date)-new Date(e.date)),l.value=t,t}async function j(t){return(await m()).find(e=>e.slug===t)}function y(t,e=150){const o=t.replace(/#{1,6}\s+/g,"").replace(/\*\*(.*?)\*\*/g,"$1").replace(/\*(.*?)\*/g,"$1").replace(/`(.*?)`/g,"$1").replace(/\[([^\]]+)\]\([^)]+\)/g,"$1").replace(/```[\s\S]*?```/g,"").replace(/>\s+/g,"").replace(/[-*+]\s+/g,"").replace(/\n+/g," ").trim();return o.length>e?o.substring(0,e)+"...":o}async function V(){const t=await m(),e=new Set;return t.forEach(o=>{o.tags.forEach(r=>e.add(r))}),Array.from(e).sort()}export{V,j,m};
+跨页面通信是前端开发中常见的需求，根据不同场景和需求，选择合适的通信方式。同域下，推荐使用 \`localStorage\`、\`sessionStorage\`、\`BroadcastChannel\`，跨域下，推荐使用 \`postMessage\`、\`WebSocket\`。`,l=p([]);function k(t){const e=/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/,n=t.match(e);if(!n)return{frontmatter:{},content:t};const o=n[1],a=n[2],s={};return o.split(`
+`).forEach(c=>{const i=c.indexOf(":");if(i>0){const u=c.substring(0,i).trim();let r=c.substring(i+1).trim();(r.startsWith('"')&&r.endsWith('"')||r.startsWith("'")&&r.endsWith("'"))&&(r=r.slice(1,-1)),r.startsWith("[")&&r.endsWith("]")&&(r=r.slice(1,-1).split(",").map(d=>d.trim().replace(/['"]/g,""))),s[u]=r}}),{frontmatter:s,content:a}}const y={"2025-11-04-hello-world.md":g,"2024-01-15-vue3-learning.md":S,"2024-02-01-markdown-editor.md":v,"2025-11-04-vue3-computed.md":f,"2025-11-10-js-css阻塞机制.md":h,"2025-11-13-vue图片懒加载及原理.md":b,"2025-11-25-跨页面通信.md":C};async function m(){if(l.value.length>0)return l.value;const t=[];for(const[e,n]of Object.entries(y))try{const{frontmatter:o,content:a}=k(n),s=e.replace(".md","");t.push({slug:s,filename:e,title:o.title||"无标题",date:o.date||"未知日期",tags:o.tags||[],summary:o.summary||w(a),content:a,frontmatter:o})}catch(o){console.warn(`无法加载文章: ${e}`,o)}return t.sort((e,n)=>new Date(n.date)-new Date(e.date)),l.value=t,t}async function j(t){return(await m()).find(n=>n.slug===t)}function w(t,e=150){const n=t.replace(/#{1,6}\s+/g,"").replace(/\*\*(.*?)\*\*/g,"$1").replace(/\*(.*?)\*/g,"$1").replace(/`(.*?)`/g,"$1").replace(/\[([^\]]+)\]\([^)]+\)/g,"$1").replace(/```[\s\S]*?```/g,"").replace(/>\s+/g,"").replace(/[-*+]\s+/g,"").replace(/\n+/g," ").trim();return n.length>e?n.substring(0,e)+"...":n}async function V(){const t=await m(),e=new Set;return t.forEach(n=>{n.tags.forEach(o=>e.add(o))}),Array.from(e).sort()}export{V as a,j as b,m as g};
