@@ -62,4 +62,25 @@ import { ref } from 'vue';
 .nav ul li a.router-link-active {
     color: #007bff;
 }
+
+@media (max-width: 768px) {
+  .header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 15px;
+  }
+  .nav {
+    right: 40px;
+  }
+  .nav ul {
+    height: 60px;
+  }
+  .nav ul li {
+    font-size: 16px;
+    margin-left: 10px;
+    line-height: 60px;
+  }
+}
 </style>
